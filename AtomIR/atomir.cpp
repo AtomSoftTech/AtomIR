@@ -23,26 +23,37 @@ AtomIR::AtomIR(int ir_pin)
 {
   pinMode(ir_pin, OUTPUT);
   _ir_pin = ir_pin;
+  digitalWrite(_ir_pin, LOW);
 }
 
 void AtomIR::sendSIRC(unsigned char  dev, unsigned char  cmd)
 {
   delay(1);  
+  digitalWrite(_ir_pin, LOW);
 }
 
 void AtomIR::sendTWC(unsigned char  dev, unsigned char  cmd)
 {
   IR_TWC(dev,cmd);
+  digitalWrite(_ir_pin, LOW);
 }
 
 void AtomIR::sendRC6(unsigned char  dev, unsigned char  cmd)
 {
   delay(1);
+  digitalWrite(_ir_pin, LOW);
 }
 
 void AtomIR::sendDynex(unsigned char dev, unsigned char cmd)
 {
   IR_DYNEX(DYNEX, dev, cmd);
+  digitalWrite(_ir_pin, LOW);
+}
+
+void AtomIR::sendLGAC(unsigned char dev, unsigned char cmd)
+{
+  IR_DYNEX(LG_AC_CORE , dev, cmd);
+  digitalWrite(_ir_pin, LOW);
 }
 
 void IR_TWC(unsigned char device, unsigned char cmd)
@@ -155,6 +166,7 @@ void IR_PULSE_TWC (unsigned char type)
             break;
 
     }
+    
 
 }
 void IR_DYNEX(unsigned char dat1, unsigned char dat2, unsigned char data)
@@ -238,7 +250,7 @@ void IR_PULSE_DYNEX (unsigned char type)
                 delayMicroseconds(10);
             }
 
-            digitalWrite(_ir_pin, HIGH); 
+            digitalWrite(_ir_pin, LOW); 
             delay(4);
             delayMicroseconds(700);//delayMicroseconds(475);
             break;
@@ -252,7 +264,7 @@ void IR_PULSE_DYNEX (unsigned char type)
                 delayMicroseconds(10);
             }
 
-            digitalWrite(_ir_pin, HIGH); 
+            digitalWrite(_ir_pin, LOW); 
             delay(1);
             delayMicroseconds(665);
             break;
@@ -266,7 +278,7 @@ void IR_PULSE_DYNEX (unsigned char type)
                 delayMicroseconds(10);
             }
 
-            digitalWrite(_ir_pin, HIGH); 
+            digitalWrite(_ir_pin, LOW); 
             delayMicroseconds(665);
             break;
         case MISC:
@@ -278,7 +290,7 @@ void IR_PULSE_DYNEX (unsigned char type)
                 digitalWrite(_ir_pin, LOW); 
                 delayMicroseconds(10);
             }
-            digitalWrite(_ir_pin, HIGH); 
+            digitalWrite(_ir_pin, LOW); 
             break;
 
     }

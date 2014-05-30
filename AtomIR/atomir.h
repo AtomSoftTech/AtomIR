@@ -115,6 +115,15 @@
 #define DYNEX_TV_TV 0XF2
 #define DYNEX_TV_POWER 0XF0 //0x0F//015
 
+//LG AC Codes
+#define LG_AC_CORE 0x81
+#define LG_AC 0x66
+#define LG_AC_POWER 0x81
+#define LG_AC_TEMP_P 0xA1
+#define LG_AC_TEMP_M 0x51
+#define LG_AC_TIMER 0xF9
+#define LG_AC_MODE 0xD9
+#define LG_AC_SPEED 0x99
 
 class AtomIR
 {
@@ -124,6 +133,7 @@ class AtomIR
     void sendRC6(unsigned char dev, unsigned char cmd);
 	void sendTWC(unsigned char dev, unsigned char cmd);
 	void sendDynex(unsigned char dev, unsigned char cmd);
+	void sendLGAC(unsigned char dev, unsigned char cmd);
 };
 
 #endif

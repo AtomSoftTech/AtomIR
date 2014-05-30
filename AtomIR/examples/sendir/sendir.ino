@@ -27,6 +27,7 @@ void loop() {
   digitalWrite(led, LOW);    // turn the LED off by making the voltage LOW
   delay(1000);               // wait for a second
   
-  myREM.sendTWC(TWC_CABLE,TWC_CABLE_PAUSE);
-  myREM.sendDynex(DYNEX_TV,DYNEX_TV_VOLDOWN);
+  //myREM.sendTWC(TWC_CABLE,TWC_CABLE_PAUSE);
+  //myREM.sendDynex(DYNEX_TV,DYNEX_TV_VOLDOWN);
+  //myREM.sendLGAC(LG_AC,LG_AC_TEMP_M);
 }
