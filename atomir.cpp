@@ -14,7 +14,7 @@
 
 void IR_TWC(unsigned char device, unsigned char cmd);
 void IR_PULSE_TWC (unsigned char type);
-void IR_DYNEX(unsigned char dat1, unsigned char dat2, unsigned char data);
+void IR_DYNEX(unsigned char address_h, unsigned char address_l, unsigned char command);
 void IR_PULSE_DYNEX (unsigned char type);
 void IR_LG (unsigned char dat1, unsigned char dat2, unsigned char data);
 void IR_PULSE_LG (unsigned char type);
@@ -51,9 +51,9 @@ void AtomIR::sendRC6(unsigned char  dev, unsigned char  cmd)
   digitalWrite(_ir_pin, LOW);
 }
 
-void AtomIR::sendDynex(unsigned char dev, unsigned char cmd)
+void AtomIR::sendDynex(unsigned char address_l, unsigned char cmd)
 {
-  IR_DYNEX(DYNEX, dev, cmd);
+  IR_DYNEX(DYNEX, address_l, cmd);
   digitalWrite(_ir_pin, LOW);
 }
 
@@ -178,64 +178,64 @@ void IR_PULSE_TWC (unsigned char type)
     
 
 }
-void IR_DYNEX(unsigned char dat1, unsigned char dat2, unsigned char data)
+void IR_DYNEX(unsigned char address_h, unsigned char address_l, unsigned char command)
 {
-    unsigned char reci = 0;
+    unsigned char iCmd = 0;
     unsigned char count = 0;
-    unsigned char dat0 = data;
+    unsigned char cmd = command;
 
     for(count = 0; count < 8; count++)
     {
-        reci>>=1;
+        iCmd>>=1;
 
-        if(dat0 & 0x01)
-            reci &= 0x7F;
+        if(cmd & 0x01)
+            iCmd &= 0x7F;
         else
-            reci |= 0x80;
+            iCmd |= 0x80;
 
-        dat0>>=1;
+        cmd>>=1;
     }
 
     IR_PULSE_DYNEX(START);
 
     for(count = 0; count < 8; count++)
     {
-        if(dat1 & 0x80)
+        if(address_h & 0x80)
             IR_PULSE_DYNEX(ONE);
         else
             IR_PULSE_DYNEX(ZERO);
 
-        dat1<<=1;
+        address_h<<=1;
     }
 
     for(count = 0; count < 8; count++)
     {
-        if(dat2 & 0x80)
+        if(address_l & 0x80)
             IR_PULSE_DYNEX(ONE);
         else
             IR_PULSE_DYNEX(ZERO);
 
-        dat2<<=1;
+        address_l<<=1;
     }
 
     for(count = 0; count < 8; count++)
     {
-        if(data & 0x80)
+        if(command & 0x80)
             IR_PULSE_DYNEX(ONE);
         else
             IR_PULSE_DYNEX(ZERO);
 
-        data<<=1;
+        command<<=1;
     }
 
     for(count = 0; count < 8; count++)
     {
-        if(reci & 0x80)
+        if(iCmd & 0x80)
             IR_PULSE_DYNEX(ONE);
         else
             IR_PULSE_DYNEX(ZERO);
 
-        reci<<=1;
+        iCmd<<=1;
     }
 
     IR_PULSE_DYNEX(MISC);
