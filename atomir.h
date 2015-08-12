@@ -132,7 +132,7 @@ class AtomIR
     void sendSIRC(unsigned char dev, unsigned char cmd);
     void sendRC6(unsigned char dev, unsigned char cmd);
 	void sendTWC(unsigned char dev, unsigned char cmd);
-	void sendDynex(unsigned char dev, unsigned char cmd);
+	void sendDynex(unsigned char address_l, unsigned char command);
 	void sendLGAC(unsigned char dev, unsigned char cmd);
 };
 
