@@ -68,8 +68,8 @@
 
 
 //Dynex Remote Codes
-#define DYNEX 0x61   //This is my TV UPPER ADDRESS
-#define DYNEX_TV 0xA0
+#define DYNEX 0x61      //This is my TV UPPER ADDRESS - VARIES FOR SOME DEvICES
+#define DYNEX_TV 0xA0   //This is my TV LOWER ADDRESS - VARIES FOR SOME DEvICES
 #define DYNEX_TV_HDMI 0x0A //010
 #define DYNEX_TV_TIME 0X59
 #define DYNEX_TV_SLEEP 0XC8
