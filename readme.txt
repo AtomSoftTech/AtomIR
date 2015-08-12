@@ -1,7 +1,8 @@
 Arduino Library for AtomIR.
 
-<<<<<<< HEAD
-TWC & Dynex TV Working. Now includes LG AC
+8/12/15 - Changed naming of some variables for Dynex portion
+=======
+Now includes LG AC
 =======
 TWC & Dynex TV Working. 
 SIRC & RC6 coming soon!
