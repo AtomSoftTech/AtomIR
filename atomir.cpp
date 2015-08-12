@@ -53,7 +53,7 @@ void AtomIR::sendRC6(unsigned char  dev, unsigned char  cmd)
 
 void AtomIR::sendDynex(unsigned char address_l, unsigned char command)
 {
-  IR_DYNEX(DYNEX, address_l, cmd);
+  IR_DYNEX(DYNEX, address_l, command);
   digitalWrite(_ir_pin, LOW);
 }
 
