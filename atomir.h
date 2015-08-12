@@ -68,7 +68,7 @@
 
 
 //Dynex Remote Codes
-#define DYNEX 0x61
+#define DYNEX 0x61   //This is my TV UPPER ADDRESS
 #define DYNEX_TV 0xA0
 #define DYNEX_TV_HDMI 0x0A //010
 #define DYNEX_TV_TIME 0X59
